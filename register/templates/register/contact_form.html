@@ -1,0 +1,38 @@
+{% extends "register/base.html" %}
+{% load forms_tags %}
+
+{% block page %}
+    <div class="page_header">
+        {% if contact %}
+            <h2>Edit Contact</h2>
+        {% else %}
+            <h2>Add Contact</h2>
+        {% endif %}
+    </div>
+    <div class="span8">
+        <form action="" method="post">
+            {% render_form contact_form %}
+            {% render_form connection_formset.management_form %}
+            {% for form in connection_formset %}
+                {% render_form form %}
+            {% endfor %}
+            {% csrf_token %}
+            <div class="submit">
+                <input type="submit" name="submit" class="btn btn-success" value="Save Contact" />
+                {% if contact and contact.pk %}
+                    <div class="btn-group">
+                        <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">Delete Contact
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <input type="submit" name="delete_contact" class="btn btn-danger " value="Really Delete Contact" />
+                            </li>
+                        </ul>
+                    </div>
+                {% endif %}
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

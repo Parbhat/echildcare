@@ -1,0 +1,16 @@
+{% extends "register/base.html" %}
+{% load forms_tags %}
+{% load django_tables2 %}
+
+{% block stylesheets %}
+{{ block.super }}
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}register/stylesheets/dashboard.css" />
+{% endblock %}
+
+
+{% block page %}
+    <div class="page_header">
+        <h2>Contacts</h2>
+    </div>
+    {% render_table contacts_table %}
+{% endblock %}
