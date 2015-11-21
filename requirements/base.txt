@@ -1,4 +1,5 @@
 Django>=1.8,<1.9
 RapidSMS==0.21.0
 psycopg2==2.6.1
-
+django-tables2==1.0.4
+django-flat-theme==1.1.1

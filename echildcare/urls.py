@@ -13,6 +13,7 @@ urlpatterns = [
     url(r'^httptester/', include('rapidsms.contrib.httptester.urls')),
     url(r'^messagelog/', include('rapidsms.contrib.messagelog.urls')),
     url(r'^messaging/', include('rapidsms.contrib.messaging.urls')),
+    
     url(r'^registration/', include('register.urls')),
 
     # Third party URLs

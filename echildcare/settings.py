@@ -184,6 +184,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'flat',
     'django.contrib.admin',
     'django.contrib.humanize',
     'django.contrib.sitemaps',
@@ -200,6 +201,7 @@ INSTALLED_APPS = (
     "rapidsms.contrib.echo",
     "rapidsms.contrib.default",  # Must be last
     "register",
+    "events",
 )
 
 INSTALLED_BACKENDS = {
