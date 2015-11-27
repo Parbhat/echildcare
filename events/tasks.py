@@ -14,6 +14,22 @@ logger = get_task_logger(__name__)
 
 
 @periodic_task(
+    run_every=(crontab(minute='*/1')),
+    name="delete connections that have no contacts",
+    ignore_result=True
+)
+def delete_scheduled_events():
+    """
+    Delete connections that attempted to register but not succeeded..
+    """
+
+    connections = Connection.objects.all()
+
+    for conn in connections:
+        if conn.contact is None:
+            conn.delete()
+
+@periodic_task(
     run_every=(crontab(minute=0, hour=9)),
     name="delete scheduled tasks that are over",
     ignore_result=True
