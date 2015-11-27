@@ -12,6 +12,25 @@ from events.models import GeneralEvent, ScheduledEvent
 
 logger = get_task_logger(__name__)
 
+
+@periodic_task(
+    run_every=(crontab(minute='*/1')),
+    name="delete scheduled tasks that are over",
+    ignore_result=True
+)
+def delete_scheduled_events():
+    """
+    Delete scheduled events that are completed.
+    """
+    curr_date = date.today()
+
+    scheduled_events_all = ScheduledEvent.objects.all()
+
+    for event in scheduled_events_all:
+        if (curr_date - event.event_date).days > 0:
+            event.delete()
+
+
 @periodic_task(
     run_every=(crontab(minute='*/1')),
     name="send messages to contacts that become eligible for general events.",
