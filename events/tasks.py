@@ -14,7 +14,7 @@ logger = get_task_logger(__name__)
 
 
 @periodic_task(
-    run_every=(crontab(minute='*/1')),
+    run_every=(crontab(minute=0, hour=9)),
     name="delete scheduled tasks that are over",
     ignore_result=True
 )
@@ -32,7 +32,7 @@ def delete_scheduled_events():
 
 
 @periodic_task(
-    run_every=(crontab(minute='*/1')),
+    run_every=(crontab(minute=0, hour=10)),
     name="send messages to contacts that become eligible for general events.",
     ignore_result=True
 )
@@ -60,7 +60,7 @@ def send_msg_general_events():
 
 
 @periodic_task(
-    run_every=(crontab(minute='*/1')),
+    run_every=(crontab(minute=0, hour=10)),
     name="send messages to contacts that are eligible for scheduled events.",
     ignore_result=True
 )
