@@ -14,9 +14,9 @@ class ContactExtended(models.Model):
             ('O', 'Other'),
         )
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES, blank=True)
-    date_of_birth = models.DateField(blank=True)
+    date_of_birth = models.DateField(null=True, blank=True)
     email = models.EmailField(blank=True)
-    phone = models.CharField(max_length=32, blank=False)
+    phone = models.CharField(max_length=32, blank=False, null=True)
     place = models.CharField(max_length=64, blank=True)
 
     class Meta:
