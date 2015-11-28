@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load forms_tags %}
+{% block title %}Login{% endblock %}
+
+{% block content %}
+  {% if user.is_authenticated %}
+    <p>You're already logged in!</p>
+  {% else %}
+    <h1>Please log in to echildcare</h1>
+
+    <div class="">
+      <form class="form-horizontal"  method="post" action="{% url 'rapidsms-login' %}">
+
+        {% render_form form %}
+        {% csrf_token %}
+          <input type="hidden" name="next" value="{{ next }}" />
+          <div class="control-group">
+              <div class="controls">
+                  <button type="submit" class="btn">Sign in</button>
+              </div>
+          </div>
+      </form>
+    </div>
+  {% endif %}
+{% endblock %}

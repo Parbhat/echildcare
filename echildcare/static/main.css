@@ -1,0 +1,33 @@
+.navbar-custom
+{
+    background-color: #417690;
+    color: #fff;
+}
+
+.navbar .nav>li>a {
+    float: none;
+    padding: 10px 15px 10px;
+    color: #fff;
+    text-decoration: none;
+    text-shadow: none;
+}
+
+.navbar .nav>li>a:hover {
+    color: #8DABB9;
+}
+
+.navbar .container
+{
+    padding: 10px 40px;
+}
+
+.navbar .brand
+{
+   text-shadow: none;
+   color: #F5DD5D;
+}
+
+#footer
+{
+    background-color: #fff;
+}
