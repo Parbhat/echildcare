@@ -55,7 +55,56 @@ Here we have to create migrations because we are extending the contact model of 
     ./manage.py makemigrations
     ./manage.py migrate
 
+The web interface require admin rights. To create superuser::
 
+    ./manage.py createsuperuser 
+    
 You should now be able to run the development server::
 
     python manage.py runserver
+
+The Web interface will be accessible at http://localhost:8000/ 
+
+Instructions
+------------
+
+The echildcare SMS applications has two interfaces
+
+- **SMS interface**
+- **Web Interface**
+
+When users are interacting with the applications through SMS, then they can start by sending only register. Then they will receive further instructions like::
+
+    register
+    Thanks for showing interest in echildcare.
+    To register, send JOIN <DATE OF BIRTH OF CHILD
+    like YYYY-MM-DD> <MOBILE NUMBER FOR RECEIVING INFORMATION>
+    Example: JOIN 2015-04-24 9*********
+
+    register 2014-04-24 9*********
+    Thank you for registering your child with
+    echildcare born on 2014-04-24. Now you will
+    receive notifications on 9896012345. You can
+    also add more information if you like. Just send
+    email, gender, language, name, pincode from your
+    registered number. Example: name pappu
+
+And if they send in wrong format, they will receive instructions to send correct data like::
+
+    join 2014-24-04 9*********
+    Please register in correct format. Example: JOIN 2015-04-24 9*********
+
+If the user send the email in wrong format::
+
+    email xyz
+    Please enter E-mail in correct format.
+
+If user try to add name from an unregistered number::
+
+    name pappu
+    You must JOIN or REGISTER yourself before you can set your child name
+    
+The Web interface is for admin which checks the registered users. The admin can edit, update or delete the user. The message log section shows all incoming and outgoing messages. Message tester can be used during development phase to test the responses. In events section, the admin can create two type of events.
+
+- **General events**: General event covers things that a child have to undergo after a certain period of time. 
+- **Scheduled events**: Events are scheduled on a date and children that are under the event criteria are called to the event.
