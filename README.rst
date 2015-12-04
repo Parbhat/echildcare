@@ -9,7 +9,7 @@ Features
 --------
 
 - Users can register with the service with simple SMS.
-- Now they will receive notifications about medicines, vaccination centres in their area. Also other government schemes.
+- Now they will receive notifications about medicines, vaccination to be given to their child.
 - The messages will be customized for users according to date of birth of child.
 - The scheduling of messages will be done automatically. Manual action is not required.
 - The admin will have access through web interface.
@@ -103,8 +103,46 @@ If user try to add name from an unregistered number::
 
     name pappu
     You must JOIN or REGISTER yourself before you can set your child name
-    
+
+The registered users can also unsubscribe from the service::
+
+    stop
+    You have successfully unsubscribed from
+    the echildcare service. To register again
+    send REGISTER
+
 The Web interface is for admin which checks the registered users. The admin can edit, update or delete the user. The message log section shows all incoming and outgoing messages. Message tester can be used during development phase to test the responses. In events section, the admin can create two type of events.
 
 - **General events**: General event covers things that a child have to undergo after a certain period of time. 
 - **Scheduled events**: Events are scheduled on a date and children that are under the event criteria are called to the event.
+
+Setup Celery for local development
+----------------------------------
+
+echildcare uses Celery to periodically send SMS notifications to Registered users.
+
+If you have not installed Celery already, you can install it with::
+    
+    pip install celery==3.1.19
+    
+The echildcare project is already integrated with Celery. This project uses Redis as a Celery “Broker”.
+First install Redis from the official download_ page. Then start redis server by::
+
+    $ redis-server
+
+.. _download: http://redis.io/download
+
+Install Redis in your virtual environment with::
+
+    $ pip install redis==2.10.5
+
+Celery tasks are present at::
+    
+    events/tasks.py
+    
+Ready to run these tasks?
+
+With echildcare project and Redis running, open two new terminal windows/tabs. In each new window, navigate to your project directory, activate your virtualenv, and then run the following commands (one in each window)::
+
+    $ celery -A echildcare worker -l info
+    $ celery -A echildcare beat -l info
