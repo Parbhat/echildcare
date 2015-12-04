@@ -73,7 +73,7 @@ The echildcare SMS applications has two interfaces
 - **SMS interface**
 - **Web Interface**
 
-When users are interacting with the applications through SMS, then they can start by sending only register. Then they will receive further instructions like::
+When users are interacting with the application through SMS, they can start by sending only register. Then they will receive further instructions like::
 
     register
     Thanks for showing interest in echildcare.
@@ -81,7 +81,7 @@ When users are interacting with the applications through SMS, then they can star
     like YYYY-MM-DD> <MOBILE NUMBER FOR RECEIVING INFORMATION>
     Example: JOIN 2015-04-24 9*********
 
-    register 2014-04-24 9*********
+    join 2014-04-24 9*********
     Thank you for registering your child with
     echildcare born on 2014-04-24. Now you will
     receive notifications on 9*********. You can
